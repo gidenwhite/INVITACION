@@ -127,10 +127,10 @@
             filter: drop-shadow(0 6px 10px rgba(0,0,0,0.4));
         }
         
-        /* Hero section con animación espectacular */
+        /* Hero section modificada */
         .hero {
             text-align: center;
-            padding: 100px 0 80px;
+            padding: 60px 0 40px;
             background: rgba(0, 0, 0, 0.4);
             margin-top: 10px;
             border-radius: 15px;
@@ -150,12 +150,23 @@
         }
         
         .hero h1 {
-            font-size: 3.5rem;
+            font-size: 3rem;
             text-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
-            margin-bottom: 25px;
+            margin-bottom: 10px;
             line-height: 1.2;
             position: relative;
-            display: inline-block;
+            display: block;
+        }
+        
+        .hero h1.primera-linea {
+            font-size: 3.5rem;
+            margin-bottom: 5px;
+        }
+        
+        .hero h1.segunda-linea {
+            font-size: 2.8rem;
+            color: var(--dorado);
+            margin-bottom: 25px;
         }
         
         .hero h1::after {
@@ -172,7 +183,7 @@
         .hero-subtitle {
             font-size: 1.6rem;
             font-weight: 500;
-            margin-bottom: 40px;
+            margin-bottom: 30px;
             max-width: 900px;
             margin-left: auto;
             margin-right: auto;
@@ -183,7 +194,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            margin-top: 40px;
+            margin-top: 30px;
             gap: 40px;
         }
         
@@ -219,80 +230,7 @@
             filter: drop-shadow(0 0 5px rgba(212, 175, 55, 0.7));
         }
         
-        /* Sección histórica */
-        .historia-section {
-            background: linear-gradient(rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.98)), url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M0,10 Q25,0 50,10 T100,10 L100,100 L0,100 Z" fill="%23B30000" fill-opacity="0.03"/></svg>');
-            background-size: cover;
-            padding: 100px 0;
-            position: relative;
-        }
-        
-        .historia-container {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 60px;
-            align-items: center;
-        }
-        
-        .historia-texto {
-            padding-right: 20px;
-        }
-        
-        .historia-imagen {
-            position: relative;
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: var(--sombra-intensa);
-            height: 400px;
-            background: linear-gradient(45deg, rgba(179, 0, 0, 0.1), rgba(0, 51, 102, 0.1)), url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><rect width="100" height="100" fill="%23f0f0f0"/><path d="M30,30 L70,30 L70,70 L30,70 Z" fill="none" stroke="%23B30000" stroke-width="2"/><circle cx="50" cy="50" r="20" fill="none" stroke="%23003366" stroke-width="2"/></svg>');
-            background-size: cover;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            color: var(--azul-fuerte);
-            transition: var(--transicion-rapida);
-        }
-        
-        .historia-imagen:hover {
-            transform: translateY(-10px) scale(1.02);
-            box-shadow: 0 20px 40px rgba(179, 0, 0, 0.4);
-        }
-        
-        .historia-imagen i {
-            font-size: 5rem;
-            margin-bottom: 20px;
-            color: var(--rojo-fuerte);
-        }
-        
-        .academico-card {
-            background: var(--blanco);
-            padding: 40px;
-            border-radius: 15px;
-            box-shadow: var(--sombra-azul);
-            border-left: 8px solid var(--azul-fuerte);
-            margin-top: 40px;
-            transition: var(--transicion-rapida);
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .academico-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 5px;
-            background: var(--degradado-intenso);
-        }
-        
-        .academico-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0, 51, 102, 0.4);
-        }
-        
-        /* Video section mejorada */
+        /* Video section - AHORA ES LA PRIMERA SECCIÓN DESPUÉS DEL HEADER */
         .video-section {
             background: linear-gradient(135deg, var(--azul-fuerte) 0%, var(--negro) 100%);
             color: var(--blanco);
@@ -368,6 +306,166 @@
         .video-placeholder:hover i {
             transform: scale(1.2);
             filter: drop-shadow(0 0 20px rgba(212, 175, 55, 1));
+        }
+        
+        /* Contenedor de descarga del video */
+        .descarga-container {
+            max-width: 1000px;
+            margin: 40px auto 0;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 30px;
+            border: 2px solid var(--dorado);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+        
+        .contador-descargas {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-bottom: 25px;
+        }
+        
+        .contador-box {
+            text-align: center;
+            flex: 1;
+            min-width: 200px;
+            background: rgba(0, 0, 0, 0.3);
+            padding: 20px;
+            border-radius: 10px;
+            border: 1px solid var(--dorado);
+        }
+        
+        .contador-numero {
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--dorado);
+            text-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
+            margin-bottom: 10px;
+        }
+        
+        .contador-texto {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+        
+        .boton-descarga {
+            display: inline-flex;
+            align-items: center;
+            gap: 15px;
+            padding: 18px 35px;
+            background: var(--degradado-dorado);
+            color: var(--azul-fuerte);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: var(--transicion-rapida);
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.4);
+            font-size: 1.1rem;
+        }
+        
+        .boton-descarga:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 10px 25px rgba(212, 175, 55, 0.7);
+            color: var(--azul-fuerte);
+        }
+        
+        /* Sección histórica */
+        .historia-section {
+            background: linear-gradient(rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.98)), url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M0,10 Q25,0 50,10 T100,10 L100,100 L0,100 Z" fill="%23B30000" fill-opacity="0.03"/></svg>');
+            background-size: cover;
+            padding: 100px 0;
+            position: relative;
+        }
+        
+        .historia-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+        
+        .historia-texto {
+            padding-right: 20px;
+        }
+        
+        .historia-imagen {
+            position: relative;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--sombra-intensa);
+            height: 400px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: var(--azul-fuerte);
+            transition: var(--transicion-rapida);
+            background-size: cover;
+            background-position: center;
+        }
+        
+        /* Estilo específico para la imagen del edificio */
+        .edificio-container {
+            background: linear-gradient(45deg, rgba(179, 0, 0, 0.1), rgba(0, 51, 102, 0.1));
+            position: relative;
+        }
+        
+        .edificio-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 15px;
+        }
+        
+        .edificio-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0, 0, 0, 0.7);
+            color: var(--blanco);
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .historia-imagen:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(179, 0, 0, 0.4);
+        }
+        
+        .academico-card {
+            background: var(--blanco);
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: var(--sombra-azul);
+            border-left: 8px solid var(--azul-fuerte);
+            margin-top: 40px;
+            transition: var(--transicion-rapida);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .academico-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: var(--degradado-intenso);
+        }
+        
+        .academico-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 51, 102, 0.4);
         }
         
         /* Detalles del evento mejorados */
@@ -721,8 +819,12 @@
         }
         
         @media (max-width: 992px) {
-            .hero h1 {
+            .hero h1.primera-linea {
                 font-size: 2.8rem;
+            }
+            
+            .hero h1.segunda-linea {
+                font-size: 2.3rem;
             }
             
             .historia-container, .details-container {
@@ -745,11 +847,15 @@
         
         @media (max-width: 768px) {
             .hero {
-                padding: 80px 0 60px;
+                padding: 50px 0 30px;
             }
             
-            .hero h1 {
+            .hero h1.primera-linea {
                 font-size: 2.3rem;
+            }
+            
+            .hero h1.segunda-linea {
+                font-size: 1.9rem;
             }
             
             .hero-subtitle {
@@ -792,11 +898,29 @@
             .footer-logo {
                 height: 60px;
             }
+            
+            .descarga-container {
+                padding: 20px;
+            }
+            
+            .contador-descargas {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .boton-descarga {
+                padding: 15px 25px;
+                font-size: 1rem;
+            }
         }
         
         @media (max-width: 576px) {
-            .hero h1 {
+            .hero h1.primera-linea {
                 font-size: 1.9rem;
+            }
+            
+            .hero h1.segunda-linea {
+                font-size: 1.7rem;
             }
             
             .hero-subtitle {
@@ -848,8 +972,12 @@
         }
         
         @media (max-width: 400px) {
-            .hero h1 {
+            .hero h1.primera-linea {
                 font-size: 1.7rem;
+            }
+            
+            .hero h1.segunda-linea {
+                font-size: 1.5rem;
             }
             
             .logo-container {
@@ -954,10 +1082,11 @@
             </div>
             
             <div class="hero">
-                <h1 class="animate__animated animate__fadeInDown">ACTO DE EGRESO<br>PROMOCIÓN BICENTENARIO AURUM 2025</h1>
-                <p class="hero-subtitle animate__animated animate__fadeIn animate__delay-1s">Carrera de Odontología - Universidad San Francisco Xavier de Chuquisaca</p>
+                <h1 class="primera-linea animate__animated animate__fadeInDown">ACTO DE EGRESO</h1>
+                <h1 class="segunda-linea animate__animated animate__fadeInDown animate__delay-1s">PROMOCIÓN BICENTENARIO AURUM 2025</h1>
+                <p class="hero-subtitle animate__animated animate__fadeIn animate__delay-2s">Carrera de Odontología - Universidad San Francisco Xavier de Chuquisaca</p>
                 
-                <div class="hero-ornamento animate__animated animate__fadeIn animate__delay-2s">
+                <div class="hero-ornamento animate__animated animate__fadeIn animate__delay-3s">
                     <div class="ornamento"></div>
                     <i class="fas fa-tooth icono-odontologia flotar"></i>
                     <div class="ornamento"></div>
@@ -965,6 +1094,51 @@
             </div>
         </div>
     </header>
+
+    <!-- Video section - AHORA ES LA PRIMERA SECCIÓN DESPUÉS DEL HEADER -->
+    <section class="video-section">
+        <div class="container">
+            <h2 class="section-title titulo-ornamental animate__animated animate__fadeIn">Invitación Formal</h2>
+            <p class="hero-subtitle animate__animated animate__fadeIn animate__delay-1s" style="margin-bottom: 50px;">Un mensaje especial de la Promoción Bicentenario Aurum 2025</p>
+            
+            <div class="video-container animate__animated animate__zoomIn">
+                <div class="video-placeholder" id="videoPlaceholder">
+                    <i class="fas fa-play-circle"></i>
+                    <h3>Invitación al Acto de Egreso</h3>
+                    <p>Presiona para ver el mensaje especial de la promoción</p>
+                    <p style="margin-top: 20px;"><small>Video disponible: acto_egreso_odontologia_2025.mp4</small></p>
+                </div>
+            </div>
+            
+            <!-- Contenedor de descarga del video -->
+            <div class="descarga-container animate__animated animate__fadeInUp animate__delay-2s">
+                <h3 style="text-align: center; margin-bottom: 30px; color: var(--dorado);">
+                    <i class="fas fa-download"></i> Descarga la Invitación
+                </h3>
+                
+                <div class="contador-descargas">
+                    <div class="contador-box">
+                        <div class="contador-numero" id="contadorDescargas">0</div>
+                        <div class="contador-texto">Personas han descargado</div>
+                    </div>
+                    
+                    <div class="contador-box">
+                        <div class="contador-numero" id="contadorVisitas">0</div>
+                        <div class="contador-texto">Visitas a esta página</div>
+                    </div>
+                </div>
+                
+                <div style="text-align: center;">
+                    <a href="assets/video.mp4" download="Invitacion_Acto_Egreso_Odontologia_2025.mp4" class="boton-descarga" id="botonDescarga">
+                        <i class="fas fa-file-video"></i> Descargar Video de Invitación
+                    </a>
+                    <p style="margin-top: 20px; opacity: 0.8; font-size: 0.9rem;">
+                        <i class="fas fa-info-circle"></i> Video en formato MP4 - Tamaño aproximado: 25 MB
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <!-- Sección histórica y académica -->
     <section class="historia-section">
@@ -984,27 +1158,12 @@
                     </div>
                 </div>
                 
-                <div class="historia-imagen animate__animated animate__fadeInRight brillo">
-                    <i class="fas fa-university"></i>
-                    <h3 style="color: var(--blanco); margin-top: 20px;">Histórico Paraninfo Universitario</h3>
-                    <p style="color: var(--blanco); margin-top: 10px; text-align: center;">Escenario de ceremonias académicas desde el siglo XVII, testigo de la historia y tradición universitaria.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Video section -->
-    <section class="video-section">
-        <div class="container">
-            <h2 class="section-title titulo-ornamental animate__animated animate__fadeIn">Invitación Formal</h2>
-            <p class="hero-subtitle animate__animated animate__fadeIn animate__delay-1s" style="margin-bottom: 50px;">Un mensaje especial de la Promoción Bicentenario Aurum 2025</p>
-            
-            <div class="video-container animate__animated animate__zoomIn">
-                <div class="video-placeholder" id="videoPlaceholder">
-                    <i class="fas fa-play-circle"></i>
-                    <h3>Invitación al Acto de Egreso</h3>
-                    <p>Presiona para ver el mensaje especial de la promoción</p>
-                    <p style="margin-top: 20px;"><small>Video disponible: acto_egreso_odontologia_2025.mp4</small></p>
+                <div class="historia-imagen edificio-container animate__animated animate__fadeInRight brillo">
+                    <img src="assets/edificio.png" alt="Edificio Histórico Universidad San Francisco Xavier" id="imagenEdificio">
+                    <div class="edificio-overlay">
+                        <h3 style="color: var(--dorado);">Histórico Paraninfo Universitario</h3>
+                        <p style="color: var(--blanco);">Escenario de ceremonias académicas desde el siglo XVII, testigo de la historia y tradición universitaria.</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -1126,7 +1285,12 @@
             </p>
             
             <div class="animate__animated animate__fadeIn animate__delay-2s">
-                <a href="#top" class="btn" style="margin-top: 20px;">
+                <div style="margin-bottom: 20px; color: var(--dorado); font-size: 1.1rem;">
+                    <i class="fas fa-download"></i> <span id="totalDescargas">0</span> descargas realizadas | 
+                    <i class="fas fa-eye"></i> <span id="totalVisitas">0</span> visitas a esta página
+                </div>
+                
+                <a href="#top" class="btn" style="margin-top: 10px;">
                     <i class="fas fa-arrow-up"></i> Volver al Inicio
                 </a>
             </div>
@@ -1185,6 +1349,91 @@
             "Urquizu Hugo",
             "Yucra Condori Mirian"
         ];
+
+        // Sistema de contador de descargas y visitas
+        function inicializarContadores() {
+            // Obtener contadores de localStorage o inicializar en 0
+            let descargas = localStorage.getItem('descargasVideo') || 0;
+            let visitas = localStorage.getItem('visitasPagina') || 0;
+            
+            // Incrementar visitas
+            visitas = parseInt(visitas) + 1;
+            localStorage.setItem('visitasPagina', visitas);
+            
+            // Actualizar display
+            document.getElementById('contadorDescargas').textContent = descargas;
+            document.getElementById('contadorVisitas').textContent = visitas;
+            document.getElementById('totalDescargas').textContent = descargas;
+            document.getElementById('totalVisitas').textContent = visitas;
+            
+            // Configurar botón de descarga
+            const botonDescarga = document.getElementById('botonDescarga');
+            botonDescarga.addEventListener('click', function() {
+                // Incrementar contador de descargas
+                descargas = parseInt(descargas) + 1;
+                localStorage.setItem('descargasVideo', descargas);
+                
+                // Actualizar display
+                document.getElementById('contadorDescargas').textContent = descargas;
+                document.getElementById('totalDescargas').textContent = descargas;
+                
+                // Mostrar confirmación
+                mostrarConfirmacionDescarga();
+            });
+        }
+
+        function mostrarConfirmacionDescarga() {
+            // Crear elemento de confirmación
+            const confirmacion = document.createElement('div');
+            confirmacion.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                background: var(--degradado-intenso);
+                color: white;
+                padding: 15px 25px;
+                border-radius: 10px;
+                box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+                z-index: 10000;
+                animation: fadeInOut 3s ease-in-out;
+                border-left: 5px solid var(--dorado);
+            `;
+            
+            confirmacion.innerHTML = `
+                <div style="display: flex; align-items: center; gap: 10px;">
+                    <i class="fas fa-check-circle" style="font-size: 1.5rem; color: var(--dorado);"></i>
+                    <div>
+                        <strong>¡Descarga iniciada!</strong><br>
+                        <small>Gracias por descargar nuestra invitación</small>
+                    </div>
+                </div>
+            `;
+            
+            // Añadir al documento
+            document.body.appendChild(confirmacion);
+            
+            // Remover después de 3 segundos
+            setTimeout(() => {
+                confirmacion.style.animation = 'fadeOut 0.5s ease-in-out';
+                setTimeout(() => confirmacion.remove(), 500);
+            }, 2500);
+            
+            // Añadir estilos de animación
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes fadeInOut {
+                    0% { opacity: 0; transform: translateY(-20px); }
+                    15% { opacity: 1; transform: translateY(0); }
+                    85% { opacity: 1; transform: translateY(0); }
+                    100% { opacity: 0; transform: translateY(-20px); }
+                }
+                @keyframes fadeOut {
+                    from { opacity: 1; }
+                    to { opacity: 0; }
+                }
+            `;
+            document.head.appendChild(style);
+        }
 
         // Generar partículas
         function crearParticulas() {
@@ -1248,14 +1497,38 @@
                         <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(45deg, rgba(179,0,0,0.7), rgba(0,51,102,0.7));"></div>
                         <i class="fas fa-play-circle" style="font-size: 5rem; color: #D4AF37; z-index: 2;"></i>
                         <div style="position: absolute; bottom: 20px; left: 0; width: 100%; text-align: center; color: white; z-index: 2;">
-                            <p>Simulación de video de invitación</p>
+                            <p>Video de invitación oficial - Duración: 2:30 min</p>
                             <p><small>acto_egreso_odontologia_2025.mp4</small></p>
                         </div>
+                    </div>
+                    <div style="margin-top: 20px;">
+                        <a href="assets/video.mp4" download class="boton-descarga" style="text-decoration: none;">
+                            <i class="fas fa-download"></i> Descargar este video
+                        </a>
                     </div>
                 `;
                 
                 // Añadir animación
                 this.classList.add('animate__animated', 'animate__pulse');
+                
+                // Actualizar contador de descargas si descargan desde aquí
+                const botonDescargaVideo = this.querySelector('.boton-descarga');
+                if (botonDescargaVideo) {
+                    botonDescargaVideo.addEventListener('click', function(e) {
+                        e.stopPropagation();
+                        // Incrementar contador
+                        let descargas = localStorage.getItem('descargasVideo') || 0;
+                        descargas = parseInt(descargas) + 1;
+                        localStorage.setItem('descargasVideo', descargas);
+                        
+                        // Actualizar display
+                        document.getElementById('contadorDescargas').textContent = descargas;
+                        document.getElementById('totalDescargas').textContent = descargas;
+                        
+                        // Mostrar confirmación
+                        mostrarConfirmacionDescarga();
+                    });
+                }
             });
         }
 
@@ -1293,13 +1566,38 @@
             });
         }
 
+        // Manejo de imagen del edificio (fallback si no existe)
+        function configurarImagenEdificio() {
+            const imagenEdificio = document.getElementById('imagenEdificio');
+            
+            // Verificar si la imagen existe
+            imagenEdificio.onerror = function() {
+                // Si no existe, mostrar un placeholder SVG
+                this.style.display = 'none';
+                const contenedor = this.parentElement;
+                contenedor.innerHTML = `
+                    <div style="width: 100%; height: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 30px; text-align: center; background: linear-gradient(45deg, rgba(179,0,0,0.2), rgba(0,51,102,0.2));">
+                        <i class="fas fa-university" style="font-size: 5rem; color: var(--azul-fuerte); margin-bottom: 20px;"></i>
+                        <h3 style="color: var(--azul-fuerte);">Histórico Paraninfo Universitario</h3>
+                        <p style="color: var(--azul-fuerte); margin-top: 10px;">Edificio histórico de la Universidad San Francisco Xavier</p>
+                    </div>
+                    <div class="edificio-overlay">
+                        <h3 style="color: var(--dorado);">Histórico Paraninfo Universitario</h3>
+                        <p style="color: var(--blanco);">Escenario de ceremonias académicas desde el siglo XVII, testigo de la historia y tradición universitaria.</p>
+                    </div>
+                `;
+            };
+        }
+
         // Inicializar
         document.addEventListener('DOMContentLoaded', function() {
+            inicializarContadores();
             crearParticulas();
             generarGraduados();
             configurarVideo();
             configurarBarraProgreso();
             configurarAnimacionesScroll();
+            configurarImagenEdificio();
             
             // Añadir animaciones a elementos específicos
             const elementosFlotar = document.querySelectorAll('.flotar');
@@ -1308,23 +1606,39 @@
             });
             
             // Efecto de escritura para el título principal
-            const tituloPrincipal = document.querySelector('.hero h1');
-            const textoOriginal = tituloPrincipal.innerHTML;
-            tituloPrincipal.innerHTML = '';
+            const primeraLinea = document.querySelector('.primera-linea');
+            const segundaLinea = document.querySelector('.segunda-linea');
+            const textoPrimeraLinea = "ACTO DE EGRESO";
+            const textoSegundaLinea = "PROMOCIÓN BICENTENARIO AURUM 2025";
+            
+            primeraLinea.innerHTML = '';
+            segundaLinea.innerHTML = '';
             
             let i = 0;
+            let j = 0;
             const velocidadEscritura = 50;
             
-            function escribirTitulo() {
-                if (i < textoOriginal.length) {
-                    tituloPrincipal.innerHTML += textoOriginal.charAt(i);
+            function escribirPrimeraLinea() {
+                if (i < textoPrimeraLinea.length) {
+                    primeraLinea.innerHTML += textoPrimeraLinea.charAt(i);
                     i++;
-                    setTimeout(escribirTitulo, velocidadEscritura);
+                    setTimeout(escribirPrimeraLinea, velocidadEscritura);
+                } else {
+                    // Esperar un poco y empezar la segunda línea
+                    setTimeout(escribirSegundaLinea, 500);
+                }
+            }
+            
+            function escribirSegundaLinea() {
+                if (j < textoSegundaLinea.length) {
+                    segundaLinea.innerHTML += textoSegundaLinea.charAt(j);
+                    j++;
+                    setTimeout(escribirSegundaLinea, velocidadEscritura);
                 }
             }
             
             // Iniciar escritura después de un breve retraso
-            setTimeout(escribirTitulo, 1000);
+            setTimeout(escribirPrimeraLinea, 1000);
         });
     </script>
 </body>
