@@ -274,7 +274,7 @@
             filter: blur(15px);
         }
         
-        /* Estilos para el reproductor de video */
+        /* Estilos para el iframe de video */
         .video-player {
             width: 100%;
             height: 550px;
@@ -282,10 +282,10 @@
             position: relative;
         }
         
-        #videoElement {
+        .video-iframe {
             width: 100%;
             height: 100%;
-            object-fit: cover;
+            border: none;
         }
         
         .video-overlay {
@@ -294,7 +294,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.7);
+            background: rgba(0, 0, 0, 0.8);
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -302,9 +302,8 @@
             color: var(--blanco);
             text-align: center;
             padding: 30px;
-            cursor: pointer;
-            transition: var(--transicion-rapida);
             z-index: 2;
+            transition: opacity 0.5s ease;
         }
         
         .video-overlay.hidden {
@@ -318,11 +317,6 @@
             color: var(--dorado);
             filter: drop-shadow(0 0 10px rgba(212, 175, 55, 0.8));
             transition: var(--transicion-rapida);
-        }
-        
-        .video-overlay:hover i {
-            transform: scale(1.2);
-            filter: drop-shadow(0 0 20px rgba(212, 175, 55, 1));
         }
         
         .video-controls {
@@ -901,7 +895,7 @@
                 padding-right: 0;
             }
             
-            .video-player, .video-overlay {
+            .video-player {
                 height: 450px;
             }
             
@@ -939,7 +933,7 @@
                 font-size: 2.2rem;
             }
             
-            .video-player, .video-overlay {
+            .video-player {
                 height: 350px;
             }
             
@@ -1011,7 +1005,7 @@
                 grid-template-columns: 1fr;
             }
             
-            .video-player, .video-overlay {
+            .video-player {
                 height: 300px;
             }
             
@@ -1179,10 +1173,15 @@
                         <i class="fas fa-clock"></i> Reproducción automática en <span id="countdown">3</span>s
                     </div>
                     
-                    <video id="videoElement" preload="metadata" playsinline>
-                        <source src="https://drive.google.com/file/d/1hQN7yWavSyzClj3kuGzeDELT7J8Gg4rF/preview" type="video/mp4">
-                        Tu navegador no soporta la reproducción de videos. Por favor, descarga el video para verlo.
-                    </video>
+                    <!-- IFRAME CORREGIDO CON ENLACE DE PREVIEW -->
+                    <iframe 
+                        id="videoIframe"
+                        class="video-iframe"
+                        src="https://drive.google.com/file/d/1hQN7yWavSyzClj3kuGzeDELT7J8Gg4rF/preview"
+                        allow="autoplay; fullscreen; picture-in-picture"
+                        allowfullscreen
+                        frameborder="0">
+                    </iframe>
                     
                     <div class="video-overlay" id="videoOverlay">
                         <i class="fas fa-play-circle"></i>
@@ -1192,8 +1191,8 @@
                     </div>
                     
                     <div class="video-controls">
-                        <button id="playPauseBtn">
-                            <i class="fas fa-play"></i> <span>Reproducir</span>
+                        <button id="playBtn">
+                            <i class="fas fa-play"></i> Reproducir Video
                         </button>
                         <button id="downloadBtn">
                             <i class="fas fa-download"></i> Descargar Video
@@ -1450,9 +1449,8 @@
         ];
 
         // Variables globales para el video
-        let video;
+        let videoIframe;
         let videoOverlay;
-        let playPauseBtn;
         let autoPlayTimer;
         let autoPlayCountdown = 3;
         let userInteracted = false;
@@ -1493,51 +1491,43 @@
 
         // Inicializar sistema de video
         function inicializarVideo() {
-            video = document.getElementById('videoElement');
+            videoIframe = document.getElementById('videoIframe');
             videoOverlay = document.getElementById('videoOverlay');
-            playPauseBtn = document.getElementById('playPauseBtn');
             
-            // Configurar eventos del video
-            video.addEventListener('play', function() {
-                playPauseBtn.innerHTML = '<i class="fas fa-pause"></i> <span>Pausar</span>';
+            // Botón para reproducir (oculta el overlay)
+            document.getElementById('playBtn').addEventListener('click', function() {
+                userInteracted = true;
                 videoOverlay.classList.add('hidden');
                 
+                // Intentar forzar reproducción cambiando el src del iframe
+                // Google Drive no permite controlar la reproducción directamente desde iframe
+                // Solo podemos ocultar el overlay
+                
                 // Registrar reproducción
-                if (!userInteracted) {
-                    let reproducciones = localStorage.getItem('reproduccionesVideo') || 0;
-                    reproducciones = parseInt(reproducciones) + 1;
-                    localStorage.setItem('reproduccionesVideo', reproducciones);
-                    document.getElementById('totalReproducciones').textContent = reproducciones;
-                }
+                let reproducciones = localStorage.getItem('reproduccionesVideo') || 0;
+                reproducciones = parseInt(reproducciones) + 1;
+                localStorage.setItem('reproduccionesVideo', reproducciones);
+                document.getElementById('totalReproducciones').textContent = reproducciones;
                 
                 // Ocultar indicador de reproducción automática
                 document.getElementById('autoPlayIndicator').style.display = 'none';
-            });
-            
-            video.addEventListener('pause', function() {
-                playPauseBtn.innerHTML = '<i class="fas fa-play"></i> <span>Reproducir</span>';
-            });
-            
-            video.addEventListener('ended', function() {
-                playPauseBtn.innerHTML = '<i class="fas fa-play"></i> <span>Reproducir</span>';
-            });
-            
-            // Botón de reproducción/pausa
-            playPauseBtn.addEventListener('click', function() {
-                userInteracted = true;
-                if (video.paused) {
-                    video.play();
-                } else {
-                    video.pause();
-                }
+                clearTimeout(autoPlayTimer);
             });
             
             // Overlay para reproducir
             videoOverlay.addEventListener('click', function() {
                 userInteracted = true;
-                video.play();
-                clearTimeout(autoPlayTimer);
+                videoOverlay.classList.add('hidden');
+                
+                // Registrar reproducción
+                let reproducciones = localStorage.getItem('reproduccionesVideo') || 0;
+                reproducciones = parseInt(reproducciones) + 1;
+                localStorage.setItem('reproduccionesVideo', reproducciones);
+                document.getElementById('totalReproducciones').textContent = reproducciones;
+                
+                // Ocultar indicador de reproducción automática
                 document.getElementById('autoPlayIndicator').style.display = 'none';
+                clearTimeout(autoPlayTimer);
             });
             
             // Botón de descarga en controles
@@ -1573,13 +1563,15 @@
                 if (autoPlayCountdown <= 0) {
                     clearInterval(countdownInterval);
                     
-                    // Si el usuario no ha interactuado, reproducir automáticamente
+                    // Si el usuario no ha interactuado, ocultar overlay automáticamente
                     if (!userInteracted) {
-                        video.play().catch(function(error) {
-                            console.log("La reproducción automática falló:", error);
-                            // Si falla, mostrar mensaje para que el usuario haga clic manualmente
-                            mostrarConfirmacion("Reproducción automática bloqueada", "Por favor, haz clic en el botón de reproducción para ver el video");
-                        });
+                        videoOverlay.classList.add('hidden');
+                        
+                        // Registrar reproducción automática
+                        let reproducciones = localStorage.getItem('reproduccionesVideo') || 0;
+                        reproducciones = parseInt(reproducciones) + 1;
+                        localStorage.setItem('reproduccionesVideo', reproducciones);
+                        document.getElementById('totalReproducciones').textContent = reproducciones;
                     }
                 }
             }, 1000);
@@ -1637,7 +1629,7 @@
                         15% { opacity: 1; transform: translateY(0); }
                         85% { opacity: 1; transform: translateY(0); }
                         100% { opacity: 0; transform: translateY(-20px); }
-                    }
+                }
                     @keyframes fadeOut {
                         from { opacity: 1; }
                         to { opacity: 0; }
@@ -1812,6 +1804,17 @@
             
             document.addEventListener('keydown', function() {
                 userInteracted = true;
+            });
+            
+            // Verificar si el iframe se cargó correctamente
+            videoIframe.addEventListener('load', function() {
+                console.log("Video iframe cargado correctamente");
+            });
+            
+            videoIframe.addEventListener('error', function() {
+                console.log("Error cargando el video iframe");
+                // Mostrar mensaje de error
+                mostrarConfirmacion("Error al cargar el video", "Por favor, intenta recargar la página o descarga el video directamente");
             });
         });
     </script>
